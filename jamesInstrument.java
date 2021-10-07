@@ -23,13 +23,13 @@ public class jamesInstrument implements Instrument{
     }
         @Override
         public void pluck(char key) {
+            Random rand = new Random();
             double freq = 440.0 * Math.pow(2.0, (key % 37 - 24) / 12.0);
             int size = (int)(44100.0 / freq);
-            for (int gs = 0; gs < 37; gs++) {
-                for (int f = 0; f < size; f++) {
-                    double r = 0.4; // random [-0.5; 0.5]
-                    strings.get(gs).set(f, r);
-                }
+            for (int f = 0; f < size; f++) 
+            {
+                double r = rand.nextDouble()*(0.5 - -0.5) + -0.5; // random [-0.5; 0.5]
+                strings.get(key % 37).set(f, r);
             }
         }
     
